@@ -110,3 +110,13 @@ export async function gathered(id) {
     return Promise.reject(error);
   }
 }
+const [vaultData, dbData] = await Promise.all([vaultPromise, specificDbPromise]);    // added this to counteract any errors
+return {
+  id: id,
+  ...vaultData,
+  ...dbData
+}:
+} catch (error) {
+return Promise.reject(error);
+}
+}
