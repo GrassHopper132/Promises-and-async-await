@@ -14,6 +14,7 @@ export async function central(id) {
   let db = "db1";
   if (id > 4) db = "db2";
   if (id > 7) db = "db3";
+   if (id > 9) db = "db4";
 
   return db;
 }
@@ -97,3 +98,15 @@ export async function vault(id) {
   };
 }
 
+export async function gathered(id) {
+ if (typeof id !== "number") throw new Error("Invalid Input -- ID must be a Number");
+  if (id < 1 || id > 10) throw new Error("Invalid Input -- ID out of Range");
+  try {
+    
+ const centralPromise = central(id);
+    const vaultPromise = vault(id);
+    const dbString = await centralPromise;
+    } catch (error) {
+    return Promise.reject(error);
+  }
+}
